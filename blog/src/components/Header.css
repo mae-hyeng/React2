@@ -1,0 +1,47 @@
+.Header .max-width {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 1rem 0;
+}
+.Header h1 {
+  font-size: 3rem;
+}
+.Header h1 a {
+  display: block;
+  padding: 0.4rem;
+  margin-left: -0.4rem;
+  cursor: pointer;
+}
+
+.Header .button_home {
+  border: none;
+  background-color: white;
+}
+
+button:focus {
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .only-pc {
+    display: none;
+  }
+  .Header .button {
+    width: 4.4rem;
+    height: 4.4rem;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .Header .button span {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+  }
+}

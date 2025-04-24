@@ -1,0 +1,66 @@
+.Banner {
+  position: relative;
+  background: url(../src/assets/background.jpg) no-repeat 50% 50% / cover;
+  height: 27em;
+  margin-bottom: 3em;
+}
+
+.Banner .max-width {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Banner-contents {
+  width: 28rem;
+  padding: 7rem 0 14.5rem;
+  text-align: center;
+  color: var(--gray-background-light);
+}
+
+.Banner-contents > * {
+  position: relative;
+}
+
+.sub-text {
+  border: 1px solid rgba(249, 249, 249, 0.3);
+  border-width: 1px 0;
+  padding: 1rem 0 0.8rem;
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+}
+
+/* 반응형 */
+@media (max-width: 1280px) {
+  .Banner-contents::before {
+    width: 44rem;
+  }
+}
+@media (max-width: 1260px) {
+  .today {
+    font-size: 3rem;
+    padding-left: 0.2em;
+  }
+  .today em {
+    display: inline;
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .Banner-contents {
+    width: 100%;
+  }
+  .Banner-contents::before {
+    width: 100%;
+  }
+  .Banner-contents {
+    margin: 0 auto;
+  }
+
+  .today {
+    text-align: center;
+    padding-left: 0;
+  }
+}

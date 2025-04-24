@@ -1,0 +1,18 @@
+.Post {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background: var(--white-color);
+  font-size: 2rem;
+}
+
+@media (max-width: 540px) {
+  .contents-wrap h3 {
+    height: auto;
+    -webkit-line-clamp: 1;
+  }
+  .contents-wrap .post-description {
+    height: auto;
+    -webkit-line-clamp: 2;
+  }
+}
