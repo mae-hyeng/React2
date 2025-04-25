@@ -11,35 +11,35 @@ const mokData = [
     id: 0,
     img: "../assets/post-img1.jpg",
     contentTitle: "1번 타이틀",
-    createdDate: new Date().toLocaleDateString(),
+    createdDate: new Date(),
     content: "React1",
   },
   {
     id: 1,
     img: "../assets/post-img2.jpg",
     contentTitle: "2번 타이틀",
-    createdDate: new Date().toLocaleDateString(),
+    createdDate: new Date(),
     content: "React2",
   },
   {
     id: 2,
     img: "../assets/post-img3.jpg",
     contentTitle: "3번 타이틀",
-    createdDate: new Date().toLocaleDateString(),
+    createdDate: new Date(),
     content: "React3",
   },
   {
     id: 3,
     img: "../assets/post-img4.jpg",
     contentTitle: "4번 타이틀",
-    createdDate: new Date().toLocaleDateString(),
+    createdDate: new Date(),
     content: "React4",
   },
   {
     id: 4,
     img: "../assets/post-img5.jpg",
     contentTitle: "5번 타이틀",
-    createdDate: new Date().toLocaleDateString(),
+    createdDate: new Date(),
     content: "React5",
   },
 ];
@@ -51,13 +51,36 @@ function App() {
   const blogId = useRef(5);
   const [data, setData] = useState(mokData);
 
-  const onClick = (item) => {
-    setData({ ...data, item });
+  const onClickSave = (item) => {
+    if (item.img === "") item.img = "../assets/post-img1.jpg";
+    const editNew = {
+      id: blogId.current++,
+      img: item.img,
+      contentTitle: item.contentTitle,
+      createdDate: item.createdDate,
+      content: item.content,
+    };
+
+    setData([...data, editNew]);
+  };
+
+  const onClickUpdate = (targetId, newData) => {
+    setData(
+      data.map((item) =>
+        item.id === targetId ? { ...item, ...newData } : item
+      )
+    );
+  };
+
+  const onClickDelete = (targetId) => {
+    setData(data.filter((item) => item.id !== targetId));
   };
 
   return (
     <BlogStateContext.Provider value={data}>
-      <BlogStateDispatchContext.Provider value={{ onClick }}>
+      <BlogStateDispatchContext.Provider
+        value={{ onClickSave, onClickUpdate, onClickDelete }}
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />

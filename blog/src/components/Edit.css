@@ -10,44 +10,47 @@
 }
 
 .Edit .Edit_wrapper {
-  width: 70%;
-  padding: 1em 5em;
+  width: 50%;
+  padding: 5em 5em;
   display: flex;
   flex-direction: column;
-  background-color: var(--white-color);
-  border-radius: 5px;
+  background-color: var(--gray-background);
+  border-radius: var(--border-radius);
 }
 
 .Edit input {
-  padding: 5px 5px;
-  border: 0.1px solid var(--gray-color);
-  border-radius: 3px;
+  padding: 10px 10px;
 }
 
 .Edit .Edit_date,
 .Edit .Edit_text,
 .Edit .Edit_title {
-  margin-bottom: 5em;
+  margin-bottom: 1em;
 }
 
 .Edit .Edit_date > input {
   width: 10em;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .Edit .Edit_title > input {
   width: 100%;
-  font-size: 2em;
   border: none;
   border-bottom: 1px solid var(--gray-color);
-  outline: none;
 }
 
 .Edit .Edit_text > textarea {
   padding: 20px;
   width: 100%;
   min-height: 200px;
-  resize: vertical;
+  resize: none;
   box-sizing: border-box;
-  border-radius: 3px;
+}
+
+.Edit input,
+.Edit textarea {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 2em;
 }

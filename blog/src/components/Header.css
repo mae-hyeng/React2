@@ -8,16 +8,13 @@
 .Header h1 {
   font-size: 3rem;
 }
-.Header h1 a {
-  display: block;
-  padding: 0.4rem;
-  margin-left: -0.4rem;
-  cursor: pointer;
-}
 
 .Header .button_home {
   border: none;
+  color: var(--black-color);
   background-color: white;
+  gap: 0;
+  padding: 0;
 }
 
 button:focus {

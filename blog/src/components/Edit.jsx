@@ -1,19 +1,43 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Button from "./Button";
 import "./Edit.css";
 import { BlogStateDispatchContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import { getStringedDate } from "../util/getStringedDate";
+
+const initInput = {
+  createdDate: new Date(),
+  contentTitle: "",
+  content: "",
+  img: "",
+};
 
 const Edit = () => {
-  const { onClick } = useContext(BlogStateDispatchContext);
+  const nav = useNavigate();
+  const dateRef = useRef(null);
+  const contentTitleRef = useRef(null);
+  const contentRef = useRef(null);
+  const { onClickSave } = useContext(BlogStateDispatchContext);
 
-  const [input, setInput] = useState({
-    createdDate: new Date(),
-    contentTitle: "",
-    content: "",
-  });
-  const onClickBtnSave = () => {
-    // TODO : 저장동작 검증하기
-    // onClick(input);
+  const [input, setInput] = useState(initInput);
+  const onClickBtn = () => {
+    if (!input.createdDate && isNaN(new Date(input.createdDate).getTime())) {
+      dateRef.current.focus();
+      return;
+    }
+
+    if (input.contentTitle.trim() === "") {
+      contentTitleRef.current.focus();
+      return;
+    }
+
+    if (input.content.trim() === "") {
+      contentRef.current.focus();
+      return;
+    }
+
+    onClickSave(input);
+    nav("/", { replace: true });
   };
 
   const onChangeInput = (e) => {
@@ -30,12 +54,22 @@ const Edit = () => {
     });
   };
 
+  const onClickCancel = () => {
+    setInput(initInput);
+  };
+
   return (
     <div className="Edit">
       <div className="Edit_wrapper">
         <div className="Edit_date">
           <h3>Today Date</h3>
-          <input onChange={onChangeInput} type="date" />
+          <input
+            onChange={onChangeInput}
+            value={getStringedDate(input.createdDate)}
+            type="date"
+            ref={dateRef}
+            name="createdDate"
+          />
         </div>
         <div className="Edit_title">
           <h3>Title</h3>
@@ -44,6 +78,7 @@ const Edit = () => {
             value={input.contentTitle}
             onChange={onChangeInput}
             placeholder="제목을 입력해주세요"
+            ref={contentTitleRef}
           />
         </div>
         <div className="Edit_text">
@@ -53,17 +88,24 @@ const Edit = () => {
             value={input.content}
             onChange={onChangeInput}
             placeholder="내용을 입력해주세요"
+            ref={contentRef}
           />
         </div>
         <div className="btn-flex">
           <div className="btn-flex-start">
-            <Button text={"취소"} type={"btn-back"} />
+            <Button
+              onClick={onClickCancel}
+              text={"취소"}
+              type={"btn-back"}
+              img={"../src/assets/icon-delete-white.svg"}
+            />
           </div>
           <div className="btn-flex-end">
             <Button
-              onClick={onClickBtnSave}
+              onClick={onClickBtn}
               text={"글작성"}
               type={"btn-save"}
+              img={"../src/assets/icon-save-white.svg"}
             />
           </div>
         </div>

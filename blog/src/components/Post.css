@@ -4,7 +4,24 @@
   border-radius: var(--border-radius);
   background: var(--white-color);
   font-size: 2rem;
+  cursor: pointer;
 }
+
+/* author start */
+.author-wrap {
+  display: flex;
+  gap: 1rem;
+  color: #767676;
+  font-size: 1.8rem;
+}
+
+.author-wrap dd {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* author end */
 
 @media (max-width: 540px) {
   .contents-wrap h3 {

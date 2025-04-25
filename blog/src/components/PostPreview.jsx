@@ -1,6 +1,7 @@
 import "./PostPreview.css";
 import { BlogStateContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { getStringedDate } from "../util/getStringedDate";
 
 const PostPreview = ({ item }) => {
   const nav = useNavigate();
@@ -13,7 +14,7 @@ const PostPreview = ({ item }) => {
           <h3>{item.contentTitle}</h3>
 
           <dl className="author-wrap">
-            <dd>{item.createdDate}</dd>
+            <dd>{getStringedDate(item.createdDate)}</dd>
           </dl>
 
           <p className="post-description">{item.content}</p>
