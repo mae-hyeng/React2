@@ -4,6 +4,25 @@
   gap: 2.4rem;
 }
 
+.Posts-search {
+  width: 1224px;
+  max-width: calc(100% - 4rem);
+  margin: 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  padding: 20px 0px;
+  gap: 1em;
+}
+
+.Posts-search > select,
+.Posts-search > input {
+  padding: 0.5em 1em;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  outline: none;
+}
+
 @media (max-width: 768px) {
   .posts {
     grid-template-columns: repeat(2, 1fr);

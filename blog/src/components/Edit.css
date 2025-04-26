@@ -11,7 +11,7 @@
 
 .Edit .Edit_wrapper {
   width: 50%;
-  padding: 5em 5em;
+  padding: 3em 5em;
   display: flex;
   flex-direction: column;
   background-color: var(--gray-background);

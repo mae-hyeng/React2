@@ -3,6 +3,10 @@
   src: url("/NanumPenScript-Regular.ttf");
 }
 
+body {
+  overflow-y: scroll;
+}
+
 body * {
   letter-spacing: 0.1em;
   font-family: "NanumPenScript" !important;
