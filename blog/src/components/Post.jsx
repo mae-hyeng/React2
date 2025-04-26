@@ -4,7 +4,7 @@ import PostPreview from "./PostPreview";
 import { BlogStateContext } from "../App";
 
 const Post = ({ search, searchOption }) => {
-  const data = useContext(BlogStateContext);
+  const { data } = useContext(BlogStateContext);
 
   const onChangeToSearch = () => {
     if (search === "") return data;

@@ -9,18 +9,6 @@
   font-size: 3rem;
 }
 
-.Header .button_home {
-  border: none;
-  color: var(--black-color);
-  background-color: white;
-  gap: 0;
-  padding: 0;
-}
-
-button:focus {
-  outline: none;
-}
-
 @media (max-width: 640px) {
   .only-pc {
     display: none;

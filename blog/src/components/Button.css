@@ -1,6 +1,7 @@
 /* Button-start */
+
+/* button common start */
 button {
-  font-size: 1.5em;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -22,23 +23,66 @@ button {
   vertical-align: middle;
 }
 
-.btn-write {
-  border-radius: var(--border-radius);
-  background: var(--main-color);
+button:focus {
+  outline: none;
 }
 
-/* 저장 버튼 */
+.btn-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* button common end */
+
+/* button write start */
+.btn-write {
+  background: var(--main-color);
+}
+/* button write end */
+
+/* Home button start */
+.button_home {
+  border: none;
+  color: var(--black-color);
+  background-color: white;
+  gap: 0;
+  padding: 0;
+  font-size: 1.2em;
+}
+/* Home button end */
+
+/* save button start */
 .btn-save {
   border: 1px solid rgba(var(--main-rgb), 0.5);
-  border-radius: var(--border-radius);
   background: var(--main-color);
 }
+/* save button end */
 
-/* 뒤로가기 */
+/* back button start */
 .btn-back {
   border: 1px solid rgba(var(--red-color), 0.5);
   background: var(--red-color);
 }
+/* back button end */
+
+/* modify button start */
+.btn-modify {
+  border: 1px solid rgba(var(--main-color), 0.5);
+  background: var(--main-color);
+}
+/* modify button end */
+
+/* delete button start */
+.btn-delete {
+  border: 1px solid rgba(var(--red-color), 0.5);
+  background: var(--red-color);
+}
+/* delete button end */
 
 /* .btn-like {
   width: 12rem;
@@ -76,32 +120,3 @@ button {
     no-repeat 50% 50% / 1.6rem;
 } */
 /* Button end */
-
-/* 수정 버튼 시작 */
-.btn-modify {
-  border-radius: var(--border-radius);
-  background: var(--main-color);
-}
-
-/* 수정 버튼 끝 */
-
-/* 삭제 버튼 시작 */
-.btn-delete {
-  border-radius: var(--border-radius);
-  background: var(--red-color);
-}
-/* 삭제 버튼 끝 */
-
-/*  */
-.btn-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn-flex-start {
-  align-items: flex-start;
-}
-
-.btn-flex-end {
-  align-items: flex-end;
-}

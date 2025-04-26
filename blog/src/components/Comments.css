@@ -1,0 +1,85 @@
+.Comments {
+  display: flex;
+  justify-content: center;
+}
+
+.Comments .Comments-wrapper {
+  width: 50%;
+  padding: 2em 2em;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-background);
+  border-radius: var(--border-radius);
+  font-size: 1.8rem;
+}
+
+.Comments-wrapper > div {
+  border-radius: var(--border-radius);
+}
+
+.Cm-info {
+  padding: 1rem 2rem;
+  background-color: var(--white-color);
+}
+
+.Cm-info > div {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.Author-section {
+  font-weight: bold;
+}
+
+.Comment-section {
+  font-size: 1.4rem;
+}
+
+.Date-section {
+  font-size: 1.4rem;
+  color: var(--gray-color);
+  align-items: end;
+}
+
+.BorderBt {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.edit-comment-section {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  background-color: var(--white-color);
+  margin-top: 1rem;
+}
+
+.edit-comment-section > div {
+  padding: 1rem 0;
+}
+
+.edit-comment-section input,
+textarea {
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+.edit-comment-section .author-area {
+  display: flex;
+}
+
+.author-area > h3 {
+  padding-right: 1rem;
+}
+
+.edit-comment-section input {
+  padding: 5px 10px;
+}
+
+.edit-comment-section textarea {
+  padding: 20px;
+  width: 100%;
+  min-height: 11rem;
+  resize: none;
+}
