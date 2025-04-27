@@ -65,12 +65,11 @@ const Contents = ({ id, blogData }) => {
 
       render.onload = () => {
         setContentsImg(render.result);
+        setLocalData((item) => ({
+          ...item,
+          img: render.result,
+        }));
       };
-
-      setLocalData((item) => ({
-        ...item,
-        img: contentsImg,
-      }));
     }
   };
 

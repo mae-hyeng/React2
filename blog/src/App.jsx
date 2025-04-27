@@ -118,8 +118,8 @@ const mokData = [
   },
 ];
 
-localStorage.setItem("content", JSON.stringify(mokData));
-localStorage.setItem("comment", JSON.stringify(mokComData));
+// localStorage.setItem("content", JSON.stringify(mokData));
+// localStorage.setItem("comment", JSON.stringify(mokComData));
 
 export const BlogStateContext = createContext();
 export const BlogStateDispatchContext = createContext();
@@ -128,11 +128,11 @@ function App() {
   const blogId = useRef(5);
   const [data, setData] = useState(() => {
     const savedContent = localStorage.getItem("content");
-    return savedContent ? JSON.parse(savedContent) : [];
+    return savedContent ? JSON.parse(savedContent) : mokData;
   });
   const [comments, setComments] = useState(() => {
     const savedComment = localStorage.getItem("comment");
-    return savedComment ? JSON.parse(savedComment) : [];
+    return savedComment ? JSON.parse(savedComment) : mokComData;
   });
 
   // 게시물 작성
@@ -164,7 +164,7 @@ function App() {
   const onClickDelete = (targetId) => {
     const deleteData = data.filter((item) => item.id !== targetId);
     setData(deleteData);
-    localStorage.setItem("content", deleteData);
+    localStorage.setItem("content", JSON.stringify(deleteData));
 
     const cpyComment = { ...comments };
     delete cpyComment[targetId];

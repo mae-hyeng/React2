@@ -1,5 +1,7 @@
 .Post article > img {
   width: 100%;
+  max-height: 11em;
+  object-fit: contain;
 }
 
 .contents-wrap {
