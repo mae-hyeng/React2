@@ -35,6 +35,7 @@ const Comments = ({ id, blogDataComments }) => {
     ];
 
     setComments(cpyComments);
+    localStorage.setItem("comment", JSON.stringify(cpyComments));
 
     setNewComment({
       author: "",

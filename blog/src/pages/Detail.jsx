@@ -15,7 +15,7 @@ const Detail = () => {
     return Number(item.id) === Number(id);
   });
 
-  const blogDataComments = comments[blogData.id];
+  const blogDataComments = blogData ? comments[blogData.id] ?? [] : [];
 
   return (
     <div>

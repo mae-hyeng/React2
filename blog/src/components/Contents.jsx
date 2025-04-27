@@ -1,16 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Button from "./Button";
 import "./Contents.css";
 import { BlogStateDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { getStringedDate } from "../util/getStringedDate";
 
-const Contents = ({ blogData, id }) => {
+const Contents = ({ id, blogData }) => {
   const nav = useNavigate();
   const { onClickUpdate, onClickDelete } = useContext(BlogStateDispatchContext);
   const [isEditMode, setIsEditMode] = useState(true);
 
   const [localData, setLocalData] = useState({ ...blogData });
+  const [contentsImg, setContentsImg] = useState(localData.img);
+
+  const inputRef = useRef();
 
   const onClickModify = () => {
     setIsEditMode(!isEditMode);
@@ -45,6 +48,32 @@ const Contents = ({ blogData, id }) => {
     }));
   };
 
+  const onClickImage = () => {
+    if (isEditMode) return;
+    inputRef.current.click();
+  };
+
+  const onChangeImg = (e) => {
+    if (isEditMode) {
+      return;
+    }
+
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const render = new FileReader();
+      render.readAsDataURL(file);
+
+      render.onload = () => {
+        setContentsImg(render.result);
+      };
+
+      setLocalData((item) => ({
+        ...item,
+        img: contentsImg,
+      }));
+    }
+  };
+
   return (
     <div className="Contents">
       <div className="Edit">
@@ -69,7 +98,14 @@ const Contents = ({ blogData, id }) => {
             />
           </div>
           <div className="Edit_img">
-            <img src={localData.img} />
+            <img onClick={onClickImage} src={contentsImg} />
+            <input
+              ref={inputRef}
+              onChange={onChangeImg}
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+            />
           </div>
           <div className="Edit_text">
             <h3>Contents</h3>

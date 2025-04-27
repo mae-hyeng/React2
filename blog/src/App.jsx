@@ -118,13 +118,22 @@ const mokData = [
   },
 ];
 
+localStorage.setItem("content", JSON.stringify(mokData));
+localStorage.setItem("comment", JSON.stringify(mokComData));
+
 export const BlogStateContext = createContext();
 export const BlogStateDispatchContext = createContext();
 
 function App() {
   const blogId = useRef(5);
-  const [data, setData] = useState(mokData);
-  const [comments, setComments] = useState(mokComData);
+  const [data, setData] = useState(() => {
+    const savedContent = localStorage.getItem("content");
+    return savedContent ? JSON.parse(savedContent) : [];
+  });
+  const [comments, setComments] = useState(() => {
+    const savedComment = localStorage.getItem("comment");
+    return savedComment ? JSON.parse(savedComment) : [];
+  });
 
   // 게시물 작성
   const onClickSave = (item) => {
@@ -137,21 +146,30 @@ function App() {
       content: item.content,
     };
 
-    setData([editNew, ...data]);
+    const newData = [editNew, ...data];
+    setData(newData);
+    localStorage.setItem("content", JSON.stringify(newData));
   };
 
   // 게시물 업데이트
   const onClickUpdate = (targetId, newData) => {
-    setData(
-      data.map((item) =>
-        item.id === targetId ? { ...item, ...newData } : item
-      )
+    const updateData = data.map((item) =>
+      item.id === targetId ? { ...item, ...newData } : item
     );
+    setData(updateData);
+    localStorage.setItem("content", JSON.stringify(updateData));
   };
 
-  // 게시물 삭제
+  // 게시물 삭제 ... 그 아래 댓글들까지 삭제
   const onClickDelete = (targetId) => {
-    setData(data.filter((item) => item.id !== targetId));
+    const deleteData = data.filter((item) => item.id !== targetId);
+    setData(deleteData);
+    localStorage.setItem("content", deleteData);
+
+    const cpyComment = { ...comments };
+    delete cpyComment[targetId];
+    setComments(cpyComment);
+    localStorage.setItem("comment", JSON.stringify(cpyComment));
   };
 
   return (
