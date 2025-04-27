@@ -87,6 +87,7 @@ const mokData = [
     createdDate: new Date("2025-04-26"),
     content:
       "React는 UI(사용자 인터페이스)를 구축하기 위한 JavaScript 라이브러리입니다",
+    like: 0,
   },
   {
     id: 1,
@@ -94,6 +95,7 @@ const mokData = [
     contentTitle: "2번 타이틀",
     createdDate: new Date("2025-04-03"),
     content: "React2",
+    like: 0,
   },
   {
     id: 2,
@@ -101,6 +103,7 @@ const mokData = [
     contentTitle: "3번 타이틀",
     createdDate: new Date("2024-12-31"),
     content: "React3",
+    like: 0,
   },
   {
     id: 3,
@@ -108,6 +111,7 @@ const mokData = [
     contentTitle: "4번 타이틀",
     createdDate: new Date("2024-06-16"),
     content: "React4",
+    like: 0,
   },
   {
     id: 4,
@@ -115,6 +119,7 @@ const mokData = [
     contentTitle: "5번 타이틀",
     createdDate: new Date("2023-06-16"),
     content: "React5",
+    like: 0,
   },
 ];
 
@@ -173,7 +178,7 @@ function App() {
   };
 
   return (
-    <BlogStateContext.Provider value={{ data, comments, setComments }}>
+    <BlogStateContext.Provider value={{ data, comments, setData, setComments }}>
       <BlogStateDispatchContext.Provider
         value={{ onClickSave, onClickUpdate, onClickDelete }}
       >

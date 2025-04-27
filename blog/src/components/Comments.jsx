@@ -8,6 +8,9 @@ const Comments = ({ id, blogDataComments }) => {
   const { comments, setComments } = useContext(BlogStateContext);
   const commentRef = useRef();
   const authorRef = useRef();
+
+  const [like, setLike] = useState(true);
+
   const [newComment, setNewComment] = useState({
     author: "",
     comment: "",
@@ -51,6 +54,11 @@ const Comments = ({ id, blogDataComments }) => {
     }));
   };
 
+  // 댓글 좋아요 클릭 이벤트
+  const onClickLike = () => {
+    setLike(!like);
+  };
+
   return (
     <div className="Comments">
       <div className="Comments-wrapper">
@@ -59,8 +67,19 @@ const Comments = ({ id, blogDataComments }) => {
           <div key={comment.id} className="Cm-info">
             <div className="Author-section">{comment.author}</div>
             <div className="Comment-section">{comment.comment}</div>
-            <div className="Date-section">
-              {getStringedDate(comment.createdDate)}
+            <div className="btn-n-date-wrapper">
+              <Button
+                onClick={onClickLike}
+                type={`btn-like ${like ? "" : "active"}`}
+                // img={
+                //   like
+                //     ? `../src/assets/icon-like.svg`
+                //     : `../src/assets/icon-like-white.svg`
+                // }
+              />
+              <div className="Date-section">
+                {getStringedDate(comment.createdDate)}
+              </div>
             </div>
             <div className="BorderBt"></div>
           </div>

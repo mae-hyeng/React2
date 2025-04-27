@@ -27,6 +27,11 @@ h3 {
   background-color: var(--white-color);
 }
 
+.btn-n-date-wrapper {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
 .Cm-info > div {
   margin: 1rem 0;
   display: flex;
@@ -45,6 +50,8 @@ h3 {
   font-size: 1.4rem;
   color: var(--gray-color);
   align-items: end;
+  justify-content: center;
+  display: flex;
 }
 
 .BorderBt {

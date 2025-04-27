@@ -1,3 +1,13 @@
 .Edit_img img {
   width: 100%;
 }
+
+.Edit_wrapper .date-n-like {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Edit_wrapper .date-n-like button {
+  width: 4.5em;
+  height: 2.5em;
+}

@@ -84,39 +84,20 @@ button:focus {
 }
 /* delete button end */
 
-/* .btn-like {
-  width: 12rem;
-  height: 4rem;
-  padding-left: 3rem;
+/* like button start */
+.btn-like {
+  width: 0.5em;
+  height: 1.5em;
   border: 1px solid rgba(var(--red-rgb), 0.5);
-  border-radius: var(--border-radius);
-  background: var(--white-color) url(../src/assets/icon-like.svg) no-repeat
-    2.5rem 50% / 2.4rem;
-  transition: all 0.3s;
+  background: var(--white-color) url("../src/assets/icon-like.svg") no-repeat
+    center;
 }
-.btn-like:hover,
+/* .btn-like:hover, */
 .btn-like.active {
-  background: var(--red-color) url(../src/assets/icon-like-white.svg) no-repeat
-    2.5rem 50% / 2.4rem;
-  color: var(--white-color);
-}
-.btn-like:focus {
-  outline-color: rgba(var(--red-rgb), 0.2);
-  box-shadow: none;
+  background: var(--red-color);
+  color: var(--red-color);
+  background: var(--red-color) url("../src/assets/icon-like-white.svg")
+    no-repeat 50%;
 }
 
-.btn-modify:hover {
-  background: var(--main-color) url(../src/assets/icon-modify-white.svg)
-    no-repeat 50% 50% / 1.6rem;
-}
-
-.btn-delete {
-  background: var(--gray-background) url(../src/assets/icon-delete.svg)
-    no-repeat 50% 50% / 1.6rem;
-}
-
-.btn-delete:hover {
-  background: var(--red-color) url(../src/assets/icon-delete-white.svg)
-    no-repeat 50% 50% / 1.6rem;
-} */
-/* Button end */
+/* like button end */
