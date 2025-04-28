@@ -65,8 +65,12 @@ button:focus {
 
 /* back button start */
 .btn-back {
+  width: 4rem;
   border: 1px solid rgba(var(--red-color), 0.5);
-  background: var(--red-color);
+}
+
+.btn-back-area {
+  position: fixed;
 }
 /* back button end */
 

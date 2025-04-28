@@ -98,6 +98,9 @@ const Contents = ({ id, blogData }) => {
 
   return (
     <div className="Contents">
+      <div className="btn-back-area">
+        <Button type={"btn-back"} img={"../src/assets/ArrowLeft-blue.svg"} />
+      </div>
       <div className="Edit">
         <div className="Edit_wrapper">
           <div className="date-n-like">
