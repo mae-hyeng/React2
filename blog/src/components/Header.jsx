@@ -30,7 +30,7 @@ const Header = ({ rightBtn }) => {
                 onClick={onClickLogOut}
                 text={"Logout"}
                 type={"btn-logout"}
-                img={"./src/assets/icon-logout.svg"}
+                img={"./../src/assets/icon-logout.svg"}
               />
             ) : (
               <Button
