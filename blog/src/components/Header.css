@@ -9,6 +9,12 @@
   font-size: 3rem;
 }
 
+.Header li {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 @media (max-width: 640px) {
   .only-pc {
     display: none;

@@ -14,9 +14,11 @@ const Contents = ({ id, blogData }) => {
   const [localData, setLocalData] = useState({ ...blogData });
   const [contentsImg, setContentsImg] = useState(localData.img);
 
-  const [like, setLike] = useState(blogData.like); // 좋아요 눌려있으면 1, 아니면 0... 임시로 설정
-
   const inputRef = useRef();
+
+  // 현재 유저
+  const curUser = localStorage.getItem("currentUser");
+  const [like, setLike] = useState(localData.likeUsers?.includes(curUser));
 
   const onClickModify = () => {
     setIsEditMode(!isEditMode);
@@ -78,22 +80,32 @@ const Contents = ({ id, blogData }) => {
 
   // 게시물 좋아요 클릭 이벤트
   const onClickLike = () => {
-    // 이부분 나중에 회원별로 체크로직 구현해야 됨.
-    // 현재 임시로 회원 한 명 기준으로 localData.like 가 1인지 0인지 구분해서 +,- 하게 해둠
+    let updatedLikeUsers;
     const newLike = like ? localData.like - 1 : localData.like + 1;
 
-    setLocalData((item) => ({
-      ...item,
+    if (like) {
+      // 이미 눌렀으면 제거
+      updatedLikeUsers = localData.likeUsers.filter((user) => user !== curUser);
+    } else {
+      // 아니면 추가
+      updatedLikeUsers = [...(localData.likeUsers || []), curUser];
+    }
+
+    const updatedData = {
+      ...localData,
       like: newLike,
-    }));
+      likeUsers: updatedLikeUsers,
+    };
+
+    setLocalData(updatedData);
     setLike(!like);
 
-    const updateLike = data.map((item) =>
-      item.id === localData.id ? { ...item, like: newLike } : item
+    const newData = data.map((item) =>
+      item.id === localData.id ? updatedData : item
     );
 
-    setData(updateLike);
-    localStorage.setItem("content", JSON.stringify(updateLike));
+    setData(newData);
+    localStorage.setItem("content", JSON.stringify(newData));
   };
 
   return (
@@ -117,7 +129,7 @@ const Contents = ({ id, blogData }) => {
             <div>
               <Button
                 onClick={onClickLike}
-                type={`btn-like ${blogData.like ? "active" : ""}`}
+                type={`btn-like ${like ? "active" : ""}`}
               />
             </div>
           </div>

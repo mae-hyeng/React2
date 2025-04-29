@@ -11,6 +11,8 @@ const Comments = ({ id, blogDataComments }) => {
 
   const [like, setLike] = useState(true);
 
+  const currentUser = localStorage.getItem("currentUser");
+
   const [newComment, setNewComment] = useState({
     author: "",
     comment: "",
@@ -19,7 +21,7 @@ const Comments = ({ id, blogDataComments }) => {
 
   // 댓글 추가
   const onClickUpdateComments = () => {
-    if (newComment.author === "") {
+    if (currentUser === "" && newComment.author === "") {
       return authorRef.current.focus();
     }
     if (newComment.comment === "") {
@@ -31,7 +33,7 @@ const Comments = ({ id, blogDataComments }) => {
       ...(cpyComments[id] || []),
       {
         id: new Date().getTime(),
-        author: newComment.author,
+        author: currentUser ? currentUser : newComment.author,
         comment: newComment.comment,
         createdDate: new Date(),
       },
@@ -71,11 +73,6 @@ const Comments = ({ id, blogDataComments }) => {
               <Button
                 onClick={onClickLike}
                 type={`btn-like ${like ? "" : "active"}`}
-                // img={
-                //   like
-                //     ? `../src/assets/icon-like.svg`
-                //     : `../src/assets/icon-like-white.svg`
-                // }
               />
               <div className="Date-section">
                 {getStringedDate(comment.createdDate)}
@@ -91,7 +88,8 @@ const Comments = ({ id, blogDataComments }) => {
               ref={authorRef}
               name="author"
               onChange={onChangeInput}
-              value={newComment.author}
+              value={currentUser ? currentUser : newComment.author}
+              readOnly={currentUser ? true : false}
             />
           </div>
           <div className="text-area">

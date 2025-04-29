@@ -10,12 +10,14 @@ const Home = () => {
     <div className="App">
       <Header
         rightBtn={
-          <Button
-            onClick={() => nav("/new")}
-            text={"Write"}
-            type={"btn-write"}
-            img="./src/assets/icon-modify-white.svg"
-          />
+          <>
+            <Button
+              onClick={() => nav("/new")}
+              text={"Write"}
+              type={"btn-write"}
+              img="./src/assets/icon-modify-white.svg"
+            />
+          </>
         }
       />
       <Banner />

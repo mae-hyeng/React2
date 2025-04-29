@@ -3,7 +3,7 @@ import "./Button.css";
 const Button = ({ onClick, text, type, img }) => {
   return (
     <button onClick={onClick} className={`Button ${type}`}>
-      <img src={img} />
+      {img ? <img src={img} /> : ""}
       {text}
     </button>
   );

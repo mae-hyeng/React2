@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { createContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Detail from "./pages/Detail";
+import Login from "./components/Login";
 
 const mokComData = {
   0: [
@@ -88,6 +89,7 @@ const mokData = [
     content:
       "React는 UI(사용자 인터페이스)를 구축하기 위한 JavaScript 라이브러리입니다",
     like: 0,
+    likeUsers: [],
   },
   {
     id: 1,
@@ -96,6 +98,7 @@ const mokData = [
     createdDate: new Date("2025-04-03"),
     content: "React2",
     like: 0,
+    likeUsers: [],
   },
   {
     id: 2,
@@ -104,6 +107,7 @@ const mokData = [
     createdDate: new Date("2024-12-31"),
     content: "React3",
     like: 0,
+    likeUsers: [],
   },
   {
     id: 3,
@@ -112,6 +116,7 @@ const mokData = [
     createdDate: new Date("2024-06-16"),
     content: "React4",
     like: 0,
+    likeUsers: [],
   },
   {
     id: 4,
@@ -120,11 +125,9 @@ const mokData = [
     createdDate: new Date("2023-06-16"),
     content: "React5",
     like: 0,
+    likeUsers: [],
   },
 ];
-
-// localStorage.setItem("content", JSON.stringify(mokData));
-// localStorage.setItem("comment", JSON.stringify(mokComData));
 
 export const BlogStateContext = createContext();
 export const BlogStateDispatchContext = createContext();
@@ -135,10 +138,20 @@ function App() {
     const savedContent = localStorage.getItem("content");
     return savedContent ? JSON.parse(savedContent) : mokData;
   });
+
   const [comments, setComments] = useState(() => {
     const savedComment = localStorage.getItem("comment");
     return savedComment ? JSON.parse(savedComment) : mokComData;
   });
+
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const curUser = localStorage.getItem("currentUser");
+    if (curUser) {
+      setCurrentUser(curUser);
+    }
+  }, []);
 
   // 게시물 작성
   const onClickSave = (item) => {
@@ -178,7 +191,16 @@ function App() {
   };
 
   return (
-    <BlogStateContext.Provider value={{ data, comments, setData, setComments }}>
+    <BlogStateContext.Provider
+      value={{
+        data,
+        comments,
+        setData,
+        setComments,
+        currentUser,
+        setCurrentUser,
+      }}
+    >
       <BlogStateDispatchContext.Provider
         value={{ onClickSave, onClickUpdate, onClickDelete }}
       >
@@ -187,6 +209,7 @@ function App() {
           <Route path="/new" element={<New />} />
           <Route path="/detail/:id" element={<Detail />} />
         </Routes>
+        <Login />
       </BlogStateDispatchContext.Provider>
     </BlogStateContext.Provider>
   );

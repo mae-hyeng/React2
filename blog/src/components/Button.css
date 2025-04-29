@@ -103,5 +103,17 @@ button:focus {
   background: var(--red-color) url("../src/assets/icon-like-white.svg")
     no-repeat 50%;
 }
-
 /* like button end */
+
+/* login button start */
+.btn-login {
+  color: var(--main-color);
+  background: var(--white-color) url("../src/assets/icon-login.svg.svg")
+    no-repeat 50%;
+  transition: all 0.3s;
+}
+/* login button end */
+
+.btn-logout {
+  background: var(--red-color);
+}
