@@ -71,6 +71,7 @@ button:focus {
 
 .btn-back-area {
   position: fixed;
+  left: 80%;
 }
 /* back button end */
 

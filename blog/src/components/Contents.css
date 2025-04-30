@@ -11,3 +11,8 @@
   width: 4.5em;
   height: 2.5em;
 }
+
+.ContentsLayout {
+  display: flex;
+  flex-direction: column;
+}

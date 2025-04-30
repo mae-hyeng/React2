@@ -59,58 +59,67 @@ const Edit = () => {
   };
 
   return (
-    <div className="Edit">
-      <div className="Edit_wrapper">
-        <div className="Edit_date">
-          <h3>Today Date</h3>
-          <input
-            onChange={onChangeInput}
-            value={getStringedDate(input.createdDate)}
-            type="date"
-            ref={dateRef}
-            name="createdDate"
-          />
-        </div>
-        <div className="Edit_title">
-          <h3>Title</h3>
-          <input
-            name="contentTitle"
-            value={input.contentTitle}
-            onChange={onChangeInput}
-            placeholder="제목을 입력해주세요"
-            ref={contentTitleRef}
-          />
-        </div>
-        <div className="Edit_text">
-          <h3>Contents</h3>
-          <textarea
-            name="content"
-            value={input.content}
-            onChange={onChangeInput}
-            placeholder="내용을 입력해주세요"
-            ref={contentRef}
-          />
-        </div>
-        <div className="btn-flex">
-          <div className="btn-flex-start">
-            <Button
-              onClick={onClickCancel}
-              text={"취소"}
-              type={"btn-back"}
-              img={"../src/assets/icon-delete-white.svg"}
+    <>
+      <div className="btn-back-area">
+        <Button
+          onClick={() => nav(-1)}
+          type={"btn-back"}
+          img={"../src/assets/ArrowLeft-blue.svg"}
+        />
+      </div>
+      <div className="Edit">
+        <div className="Edit_wrapper">
+          <div className="Edit_date">
+            <h3>Today Date</h3>
+            <input
+              onChange={onChangeInput}
+              value={getStringedDate(input.createdDate)}
+              type="date"
+              ref={dateRef}
+              name="createdDate"
             />
           </div>
-          <div className="btn-flex-end">
-            <Button
-              onClick={onClickBtn}
-              text={"글작성"}
-              type={"btn-save"}
-              img={"../src/assets/icon-save-white.svg"}
+          <div className="Edit_title">
+            <h3>Title</h3>
+            <input
+              name="contentTitle"
+              value={input.contentTitle}
+              onChange={onChangeInput}
+              placeholder="제목을 입력해주세요"
+              ref={contentTitleRef}
             />
+          </div>
+          <div className="Edit_text">
+            <h3>Contents</h3>
+            <textarea
+              name="content"
+              value={input.content}
+              onChange={onChangeInput}
+              placeholder="내용을 입력해주세요"
+              ref={contentRef}
+            />
+          </div>
+          <div className="btn-flex">
+            <div className="btn-flex-start">
+              <Button
+                onClick={onClickCancel}
+                text={"취소"}
+                type={"btn-back"}
+                img={"../src/assets/icon-delete-white.svg"}
+              />
+            </div>
+            <div className="btn-flex-end">
+              <Button
+                onClick={onClickBtn}
+                text={"글작성"}
+                type={"btn-save"}
+                img={"../src/assets/icon-save-white.svg"}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
