@@ -7,23 +7,15 @@
   cursor: pointer;
 }
 
-/* author start */
-.author-wrap {
-  display: flex;
-  gap: 1rem;
-  color: #767676;
-  font-size: 1.8rem;
+.Posts-wrapper {
+  padding-bottom: 3em;
 }
-
-.author-wrap dd {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* author end */
 
 @media (max-width: 540px) {
+  .img-wrap {
+    height: auto;
+    -webkit-line-clamp: 1;
+  }
   .contents-wrap h3 {
     height: auto;
     -webkit-line-clamp: 1;

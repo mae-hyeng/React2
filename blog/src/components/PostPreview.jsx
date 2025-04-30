@@ -2,8 +2,6 @@ import "./PostPreview.css";
 import { useNavigate } from "react-router-dom";
 import { getStringedDate } from "../util/getStringedDate";
 import Button from "./Button";
-import { useContext } from "react";
-import { BlogStateContext } from "../App";
 
 const PostPreview = ({ item }) => {
   const nav = useNavigate();
@@ -11,7 +9,9 @@ const PostPreview = ({ item }) => {
   return (
     <li onClick={() => nav(`/detail/${item.id}`)} className="Post">
       <article>
-        <img src={item.img} alt="" />
+        <div className="img-wrap">
+          <img src={item.img} alt="" />
+        </div>
         <div className="contents-wrap">
           <div className="btn-flex btn-flex-end">
             <Button type={"btn-like"} text={item.like} />
