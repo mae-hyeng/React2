@@ -34,9 +34,8 @@
 .contents-wrap .btn-like {
   width: 4.5em;
   height: 2.5em;
-  border: 1px solid rgba(var(--red-rgb), 0.5);
-  background: var(--red-color) url(../src/assets/icon-like-white.svg) no-repeat
-    20%;
+  /* border: 1px solid rgba(var(--red-rgb), 0.5); */
+  background: url(../src/assets/icon-like.svg) no-repeat 20%;
   text-align: left;
   padding-left: 4.5rem;
 }

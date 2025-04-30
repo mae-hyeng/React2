@@ -35,14 +35,18 @@ h3 {
 .Cm-info > div {
   margin: 1rem 0;
   display: flex;
-  flex-direction: column;
 }
 
-.Author-section {
+.Author-section input {
+  border: none;
+  outline: none;
+  font-size: 1em;
   font-weight: bold;
 }
 
-.Comment-section {
+.Comment-section input {
+  border: none;
+  outline: none;
   font-size: 1.4rem;
 }
 
@@ -71,10 +75,21 @@ h3 {
 }
 
 .edit-comment-section input,
-textarea {
+.edit-comment-section textarea,
+.Comment-section textarea {
   outline: none;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+}
+
+.Comment-section textarea {
+  width: 100%;
+  resize: none;
+  padding: 5px 10px;
+}
+
+.Comment-section textarea.editMode {
+  border: 1px solid transparent;
 }
 
 .edit-comment-section .author-area {
@@ -85,7 +100,8 @@ textarea {
   padding-right: 1rem;
 }
 
-.edit-comment-section input {
+.edit-comment-section input,
+.Cm-info input {
   padding: 5px 10px;
 }
 
@@ -94,4 +110,9 @@ textarea {
   width: 100%;
   min-height: 11rem;
   resize: none;
+}
+
+.btn-comment-control {
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
