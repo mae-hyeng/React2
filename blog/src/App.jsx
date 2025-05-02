@@ -14,12 +14,14 @@ const mokComData = {
       author: "q",
       comment: "1번째 게시물 0번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
     {
       id: 1,
       author: "w",
       comment: "1번째 게시물 1번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
   ],
   1: [
@@ -28,12 +30,14 @@ const mokComData = {
       author: "e",
       comment: "2번째 게시물 0번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
     {
       id: 1,
       author: "r",
       comment: "2번째 게시물 1번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
   ],
   2: [
@@ -42,12 +46,14 @@ const mokComData = {
       author: "t",
       comment: "3번째 게시물 0번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
     {
       id: 1,
       author: "q",
       comment: "3번째 게시물 1번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
   ],
   3: [
@@ -56,12 +62,14 @@ const mokComData = {
       author: "w",
       comment: "4번째 게시물 0번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
     {
       id: 1,
       author: "r",
       comment: "4번째 게시물 1번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
   ],
   4: [
@@ -70,12 +78,14 @@ const mokComData = {
       author: "t",
       comment: "5번째 게시물 0번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
     {
       id: 1,
       author: "w",
       comment: "5번째 게시물 1번째 댓글",
       createdDate: new Date(),
+      likeUsers: [],
     },
   ],
 };

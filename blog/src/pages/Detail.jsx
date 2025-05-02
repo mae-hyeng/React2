@@ -17,6 +17,8 @@ const Detail = () => {
 
   const blogDataComments = blogData ? comments[blogData.id] ?? [] : [];
 
+  // const blogDataComments = blogData ? comments ?? [] : [];
+
   return (
     <div>
       <Header />

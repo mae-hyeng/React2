@@ -91,8 +91,8 @@ button:focus {
 
 /* like button start */
 .btn-like {
-  width: 0.5em;
-  height: 1.5em;
+  width: 3em;
+  height: 2em;
   color: var(--black-color);
   /* border: 1px solid rgba(var(--red-rgb), 0.5); */
   background: var(--white-color) url("../src/assets/icon-like.svg") no-repeat
@@ -105,6 +105,23 @@ button:focus {
   background: var(--red-color) url("../src/assets/icon-like-white.svg")
     no-repeat 50%;
 }
+
+.comment-btn-like {
+  width: 4.5em;
+  height: 2.5em;
+  background: url(../src/assets/icon-like.svg) no-repeat 20%;
+  text-align: left;
+  padding-left: 4.5rem;
+  color: var(--red-color);
+}
+
+.comment-btn-like.active {
+  background: var(--red-color);
+  color: var(--white-color);
+  background: var(--red-color) url("../src/assets/icon-like-white.svg")
+    no-repeat 20%;
+}
+
 /* like button end */
 
 /* login button start */

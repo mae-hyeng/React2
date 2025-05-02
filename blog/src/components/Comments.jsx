@@ -40,6 +40,7 @@ const Comments = ({ id, blogDataComments }) => {
         author: currentUser ? currentUser : newComment.author,
         comment: newComment.comment,
         createdDate: new Date(),
+        likeUsers: [],
       },
     ];
 
@@ -87,8 +88,26 @@ const Comments = ({ id, blogDataComments }) => {
   };
 
   // 댓글 좋아요 클릭 이벤트
-  const onClickLike = () => {
-    setLike(!like);
+  const onClickLike = (commentId) => {
+    const updatedComments = {
+      ...comments,
+      [id]: comments[id].map((comment) => {
+        if (comment.id !== commentId) return comment;
+
+        const hasLiked = comment.likeUsers.includes(currentUser);
+        const updatedLikeUsers = hasLiked
+          ? comment.likeUsers.filter((user) => user !== currentUser)
+          : [...comment.likeUsers, currentUser];
+
+        return {
+          ...comment,
+          likeUsers: updatedLikeUsers,
+        };
+      }),
+    };
+
+    setComments(updatedComments);
+    localStorage.setItem("comment", JSON.stringify(updatedComments));
   };
 
   return (
@@ -118,8 +137,11 @@ const Comments = ({ id, blogDataComments }) => {
 
               <div className="btn-n-date-wrapper">
                 <Button
-                  onClick={onClickLike}
-                  type={`btn-like ${like ? "" : "active"}`}
+                  onClick={() => onClickLike(comment.id)}
+                  type={`comment-btn-like btn-like ${
+                    comment.likeUsers.includes(currentUser) ? "active" : ""
+                  }`}
+                  text={comment.likeUsers.length}
                 />
                 <div className="Date-section">
                   {getStringedDate(comment.createdDate)}
@@ -130,12 +152,14 @@ const Comments = ({ id, blogDataComments }) => {
                 <div className="btn-comment-control">
                   {isEditing ? (
                     <Button
-                      text="저장"
-                      type="btn-save"
+                      text={"수정하기"}
+                      type={"btn-save"}
+                      img={"../src/assets/icon-save-white.svg"}
                       onClick={() => onClickSaveEditedComment(comment.id)}
                     />
                   ) : (
                     <Button
+                      text={"수정하기"}
                       type={"btn-modify"}
                       img={"../src/assets/icon-modify-white.svg"}
                       onClick={() =>
@@ -144,6 +168,7 @@ const Comments = ({ id, blogDataComments }) => {
                     />
                   )}
                   <Button
+                    text={"삭제하기"}
                     type={"btn-delete"}
                     img={"../src/assets/icon-delete-white.svg"}
                     onClick={() => onClickDeleteComment(comment.id)}
