@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import "./Login.css";
-import { BlogStateContext } from "../App";
+import { BlogStateContext, BlogStateDispatchContext } from "../App";
 
 function Login() {
   const [isLoginMode, setIsLoginMode] = useState(true);
 
   const { currentUser } = useContext(BlogStateContext);
   const { setCurrentUser } = useContext(BlogStateContext);
+  const { visible } = useContext(BlogStateContext);
+  const { setVisible } = useContext(BlogStateContext);
+  const { clickCloseBtn } = useContext(BlogStateDispatchContext);
 
   const [form, setForm] = useState({
     id: "",
@@ -75,10 +78,16 @@ function Login() {
   };
 
   return (
-    <div className="Login" style={{ display: currentUser ? "none" : "" }}>
+    <div
+      className="Login"
+      style={{ display: currentUser || visible ? "none" : "" }}
+    >
       <div className="login-wrapper">
         {isLoginMode ? (
           <>
+            <div className="btn-flex-end">
+              <Button type="btn-close" onClick={clickCloseBtn} text={"X"} />
+            </div>
             <h2>로그인</h2>
             <input
               type="text"

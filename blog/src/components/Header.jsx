@@ -2,13 +2,14 @@ import Button from "./Button";
 import "./Header.css";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { BlogStateContext } from "../App";
+import { BlogStateContext, BlogStateDispatchContext } from "../App";
 
 const Header = ({ rightBtn }) => {
   const nav = useNavigate();
 
   const { currentUser } = useContext(BlogStateContext);
   const { setCurrentUser } = useContext(BlogStateContext);
+  const { clickCloseBtn } = useContext(BlogStateDispatchContext);
 
   const onClickLogOut = () => {
     localStorage.removeItem("currentUser");
@@ -41,6 +42,7 @@ const Header = ({ rightBtn }) => {
                 />
               ) : (
                 <Button
+                  onClick={clickCloseBtn}
                   text="Login"
                   type="btn-login"
                   img="./src/assets/icon-login.svg"

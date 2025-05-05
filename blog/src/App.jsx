@@ -155,6 +155,7 @@ function App() {
   });
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const curUser = localStorage.getItem("currentUser");
@@ -200,6 +201,11 @@ function App() {
     localStorage.setItem("comment", JSON.stringify(cpyComment));
   };
 
+  // 로그인 화면 visible
+  const clickCloseBtn = () => {
+    setVisible((prev) => !prev);
+  };
+
   return (
     <BlogStateContext.Provider
       value={{
@@ -209,10 +215,12 @@ function App() {
         setComments,
         currentUser,
         setCurrentUser,
+        visible,
+        setVisible,
       }}
     >
       <BlogStateDispatchContext.Provider
-        value={{ onClickSave, onClickUpdate, onClickDelete }}
+        value={{ onClickSave, onClickUpdate, onClickDelete, clickCloseBtn }}
       >
         <Routes>
           <Route path="/" element={<Home />} />

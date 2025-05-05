@@ -72,6 +72,10 @@
 }
 /* signup button end */
 
+.Login .btn-close {
+  color: var(--black-color);
+}
+
 @media (max-width: 400px) {
   .Login {
     width: 90%;
