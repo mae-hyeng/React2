@@ -17,8 +17,8 @@ const Contents = ({ id, blogData }) => {
   const inputRef = useRef();
 
   // 현재 유저
-  const curUser = localStorage.getItem("currentUser");
-  const [like, setLike] = useState(localData.likeUsers?.includes(curUser));
+  const currentUser = localStorage.getItem("currentUser");
+  const [like, setLike] = useState(localData.likeUsers?.includes(currentUser));
 
   const onClickModify = () => {
     setIsEditMode(!isEditMode);
@@ -80,15 +80,18 @@ const Contents = ({ id, blogData }) => {
 
   // 게시물 좋아요 클릭 이벤트
   const onClickLike = () => {
+    if (!currentUser) return window.alert("로그인을 해주세요!");
     let updatedLikeUsers;
     const newLike = like ? localData.like - 1 : localData.like + 1;
 
     if (like) {
       // 이미 눌렀으면 제거
-      updatedLikeUsers = localData.likeUsers.filter((user) => user !== curUser);
+      updatedLikeUsers = localData.likeUsers.filter(
+        (user) => user !== currentUser
+      );
     } else {
       // 아니면 추가
-      updatedLikeUsers = [...(localData.likeUsers || []), curUser];
+      updatedLikeUsers = [...(localData.likeUsers || []), currentUser];
     }
 
     const updatedData = {

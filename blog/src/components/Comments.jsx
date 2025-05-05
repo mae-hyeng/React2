@@ -25,6 +25,7 @@ const Comments = ({ id, blogDataComments }) => {
 
   // 댓글 추가
   const onClickUpdateComments = () => {
+    if (!currentUser) return window.alert("로그인을 해주세요!");
     if (currentUser === "" && newComment.author === "") {
       return authorRef.current.focus();
     }
@@ -89,6 +90,7 @@ const Comments = ({ id, blogDataComments }) => {
 
   // 댓글 좋아요 클릭 이벤트
   const onClickLike = (commentId) => {
+    if (!currentUser) return window.alert("로그인을 해주세요!");
     const updatedComments = {
       ...comments,
       [id]: comments[id].map((comment) => {

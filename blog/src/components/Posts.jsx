@@ -6,6 +6,7 @@ import { useState } from "react";
 const Posts = () => {
   const [search, setSearch] = useState("");
   const [searchOption, setSearchOption] = useState("contentTitle");
+  const [sorted, setSorted] = useState("latest");
 
   const onChangeInput = (e) => {
     setSearch(e.target.value);
@@ -25,8 +26,29 @@ const Posts = () => {
         </select>
         <input onChange={onChangeInput} search={search} />
       </div>
+      <div className="posts-sort">
+        <a
+          onClick={() => setSorted("latest")}
+          className={sorted === "latest" ? "active" : ""}
+        >
+          최신순
+        </a>
+        <a
+          onClick={() => setSorted("oldest")}
+          className={sorted === "oldest" ? "active" : ""}
+        >
+          오래된순
+        </a>
+        <a
+          onClick={() => setSorted("popular")}
+          className={sorted === "popular" ? "active" : ""}
+        >
+          인기순
+        </a>
+      </div>
+
       <div className="max-width">
-        <Post search={search} searchOption={searchOption} />
+        <Post search={search} searchOption={searchOption} sorted={sorted} />
       </div>
     </div>
   );

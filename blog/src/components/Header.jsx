@@ -45,7 +45,7 @@ const Header = ({ rightBtn }) => {
                   onClick={clickCloseBtn}
                   text="Login"
                   type="btn-login"
-                  img="./src/assets/icon-login.svg"
+                  img="./../src/assets/icon-login.svg"
                 />
               )}
             </li>
