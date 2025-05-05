@@ -1,3 +1,10 @@
+.Header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  backdrop-filter: blur(3px);
+}
+
 .Header .max-width {
   display: flex;
   align-items: center;

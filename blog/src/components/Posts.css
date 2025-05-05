@@ -37,7 +37,6 @@
 }
 
 .posts-sort a {
-  margin-right: 10px;
   cursor: pointer;
   color: gray;
   text-decoration: none;
@@ -47,6 +46,9 @@
   font-weight: bold;
   color: black;
   text-decoration: underline;
+  border: 1px solid var(--black-color);
+  border-radius: 20px;
+  padding: 10px 20px;
 }
 
 @media (max-width: 768px) {
