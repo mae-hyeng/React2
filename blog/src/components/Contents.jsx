@@ -21,6 +21,9 @@ const Contents = ({ id, blogData }) => {
   const [like, setLike] = useState(localData.likeUsers?.includes(currentUser));
 
   const onClickModify = () => {
+    if (currentUser !== blogData.author) {
+      return alert("자신이 작성한 게시물만 수정할 수 있습니다");
+    }
     setIsEditMode(!isEditMode);
     if (!isEditMode) {
       if (window.confirm("정말 수정하시겠어요?")) {
@@ -33,6 +36,9 @@ const Contents = ({ id, blogData }) => {
   };
 
   const onClickDel = () => {
+    if (currentUser !== blogData.author) {
+      return alert("자신이 작성한 게시물만 삭제할 수 있습니다");
+    }
     if (window.confirm("정말 삭제하시겠어요?")) {
       onClickDelete(Number(id));
       nav("/", { replace: true });

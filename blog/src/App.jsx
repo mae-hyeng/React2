@@ -93,6 +93,7 @@ const mokComData = {
 const mokData = [
   {
     id: 0,
+    author: "test",
     img: "../assets/post-img1.jpg",
     contentTitle: "React란?",
     createdDate: new Date("2025-04-26"),
@@ -103,6 +104,7 @@ const mokData = [
   },
   {
     id: 1,
+    author: "test1",
     img: "../assets/post-img2.jpg",
     contentTitle: "2번 타이틀",
     createdDate: new Date("2025-04-03"),
@@ -112,6 +114,7 @@ const mokData = [
   },
   {
     id: 2,
+    author: "test",
     img: "../assets/post-img3.jpg",
     contentTitle: "3번 타이틀",
     createdDate: new Date("2024-12-31"),
@@ -121,6 +124,7 @@ const mokData = [
   },
   {
     id: 3,
+    author: "test2",
     img: "../assets/post-img4.jpg",
     contentTitle: "4번 타이틀",
     createdDate: new Date("2024-06-16"),
@@ -130,6 +134,7 @@ const mokData = [
   },
   {
     id: 4,
+    author: "test",
     img: "../assets/post-img5.jpg",
     contentTitle: "5번 타이틀",
     createdDate: new Date("2023-06-16"),
@@ -143,7 +148,6 @@ export const BlogStateContext = createContext();
 export const BlogStateDispatchContext = createContext();
 
 function App() {
-  const blogId = useRef(5);
   const [data, setData] = useState(() => {
     const savedContent = localStorage.getItem("content");
     return savedContent ? JSON.parse(savedContent) : mokData;
@@ -154,6 +158,7 @@ function App() {
     return savedComment ? JSON.parse(savedComment) : mokComData;
   });
 
+  const blogId = useRef(data.length);
   const [currentUser, setCurrentUser] = useState(null);
   const [visible, setVisible] = useState(true);
 
@@ -169,13 +174,16 @@ function App() {
     if (item.img === "") item.img = "../assets/post-img1.jpg";
     const editNew = {
       id: blogId.current++,
+      author: currentUser,
       img: item.img,
       contentTitle: item.contentTitle,
       createdDate: item.createdDate,
       content: item.content,
+      like: 0,
+      likeUsers: [],
     };
 
-    const newData = [editNew, ...data];
+    const newData = [...data, editNew];
     setData(newData);
     localStorage.setItem("content", JSON.stringify(newData));
   };

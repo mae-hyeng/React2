@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import "./Login.css";
 import { BlogStateContext, BlogStateDispatchContext } from "../App";
@@ -9,7 +9,6 @@ function Login() {
   const { currentUser } = useContext(BlogStateContext);
   const { setCurrentUser } = useContext(BlogStateContext);
   const { visible } = useContext(BlogStateContext);
-  const { setVisible } = useContext(BlogStateContext);
   const { clickCloseBtn } = useContext(BlogStateDispatchContext);
 
   const [form, setForm] = useState({
@@ -19,6 +18,8 @@ function Login() {
   });
   const [error, setError] = useState("");
 
+  const errorRef = useRef();
+
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
@@ -26,18 +27,30 @@ function Login() {
     }
   }, []);
 
+  const errorAnimation = () => {
+    if (!errorRef.current) return;
+
+    errorRef.current.classList.add("vibration");
+
+    const timeout = setTimeout(() => {
+      errorRef.current.classList.remove("vibration");
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  };
+
   const toggleMode = () => {
     setIsLoginMode(!isLoginMode);
     setForm({ id: "", password: "", passwordConfirm: "" });
     setError("");
   };
 
-  const handleChange = (e) => {
+  const onChangeInput = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLogin = () => {
+  const userSignIn = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const user = users.find(
@@ -50,12 +63,14 @@ function Login() {
       setCurrentUser(user.id);
     } else {
       setError("아이디 또는 비밀번호가 일치하지 않습니다.");
+      errorAnimation();
     }
   };
 
-  const handleSignup = () => {
+  const userSignup = () => {
     if (form.password !== form.passwordConfirm) {
       setError("비밀번호가 일치하지 않습니다.");
+      errorAnimation();
       return;
     }
 
@@ -65,6 +80,7 @@ function Login() {
 
     if (exists) {
       setError("이미 존재하는 아이디입니다.");
+      errorAnimation();
       return;
     }
 
@@ -93,18 +109,22 @@ function Login() {
               type="text"
               name="id"
               value={form.id}
-              onChange={handleChange}
+              onChange={onChangeInput}
               placeholder="아이디 입력"
             />
             <input
               type="password"
               name="password"
               value={form.password}
-              onChange={handleChange}
+              onChange={onChangeInput}
               placeholder="비밀번호 입력"
             />
-            <Button text="로그인" type="btn-login" onClick={handleLogin} />
-            {error && <div className="error">{error}</div>}
+            <Button text="로그인" type="btn-login" onClick={userSignIn} />
+            {error && (
+              <div className="error" ref={errorRef}>
+                {error}
+              </div>
+            )}
             <div className="login-extra">
               <span>아직 회원이 아니신가요?</span>
               <Button text="회원가입" type="btn-signup" onClick={toggleMode} />
@@ -117,25 +137,29 @@ function Login() {
               type="text"
               name="id"
               value={form.id}
-              onChange={handleChange}
+              onChange={onChangeInput}
               placeholder="아이디 입력"
             />
             <input
               type="password"
               name="password"
               value={form.password}
-              onChange={handleChange}
+              onChange={onChangeInput}
               placeholder="비밀번호 입력"
             />
             <input
               type="password"
               name="passwordConfirm"
               value={form.passwordConfirm}
-              onChange={handleChange}
+              onChange={onChangeInput}
               placeholder="비밀번호 확인"
             />
-            <Button text="회원가입" type="btn-signup" onClick={handleSignup} />
-            {error && <div className="error">{error}</div>}
+            <Button text="회원가입" type="btn-signup" onClick={userSignup} />
+            {error && (
+              <div className="error" ref={errorRef}>
+                {error}
+              </div>
+            )}
             <div className="login-extra">
               <span>이미 계정이 있으신가요?</span>
               <Button text="로그인" type="btn-login" onClick={toggleMode} />

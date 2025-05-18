@@ -196,3 +196,24 @@ main > .max-width {
 }
 
 /* conm_wrapper end */
+
+/* error start */
+
+.error {
+  color: var(--red-color);
+}
+
+.error.vibration {
+  animation: vibration 0.1s infinite;
+}
+
+@keyframes vibration {
+  from {
+    transform: rotate(1deg);
+  }
+  to {
+    transform: rotate(-1deg);
+  }
+}
+
+/* error end */
