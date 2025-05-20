@@ -133,6 +133,14 @@ button:focus {
 }
 /* login button end */
 
+/* logout button start */
 .btn-logout {
   background: var(--red-color);
 }
+/* logout button end */
+
+/* select img button start */
+.btn-select-img {
+  background: var(--black-color);
+}
+/* select img button end */

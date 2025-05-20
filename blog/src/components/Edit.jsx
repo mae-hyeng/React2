@@ -4,6 +4,7 @@ import "./Edit.css";
 import { BlogStateDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { getStringedDate } from "../util/getStringedDate";
+import initImg from "../../public/assets/initImage.png";
 
 const initInput = {
   createdDate: new Date(),
@@ -17,9 +18,12 @@ const Edit = () => {
   const dateRef = useRef(null);
   const contentTitleRef = useRef(null);
   const contentRef = useRef(null);
+  const inputRef = useRef();
   const { onClickSave } = useContext(BlogStateDispatchContext);
 
   const [input, setInput] = useState(initInput);
+  const [contentsImg, setContentsImg] = useState(initImg);
+
   const onClickBtn = () => {
     if (!input.createdDate && isNaN(new Date(input.createdDate).getTime())) {
       dateRef.current.focus();
@@ -52,6 +56,26 @@ const Edit = () => {
       ...input,
       [name]: value,
     });
+  };
+
+  const onClickImage = () => {
+    inputRef.current.click();
+  };
+
+  const onChangeImg = (e) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const render = new FileReader();
+      render.readAsDataURL(file);
+
+      render.onload = () => {
+        setContentsImg(render.result);
+        setInput({
+          ...input,
+          img: render.result,
+        });
+      };
+    }
   };
 
   const onClickCancel = () => {
@@ -88,6 +112,25 @@ const Edit = () => {
               placeholder="제목을 입력해주세요"
               ref={contentTitleRef}
             />
+          </div>
+          <div className="Edit_img">
+            <div className="Edit_img img-wrapper">
+              <img onClick={onClickImage} src={contentsImg} />
+            </div>
+            <div className="Edit_img input-wrapper">
+              <Button
+                onClick={onClickImage}
+                text={"이미지 선택"}
+                type={"btn-select-img"}
+              />
+              <input
+                ref={inputRef}
+                onChange={onChangeImg}
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+              />
+            </div>
           </div>
           <div className="Edit_text">
             <h3>Contents</h3>

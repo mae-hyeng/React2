@@ -55,6 +55,16 @@
   font-size: 2em;
 }
 
-.Edit_img {
-  height: 20em;
+.Edit_img input {
+  font-size: 1.5em;
+}
+
+.Edit_img.img-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.Edit_img.input-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }

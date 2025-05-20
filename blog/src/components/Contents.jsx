@@ -157,14 +157,28 @@ const Contents = ({ id, blogData }) => {
               />
             </div>
             <div className="Edit_img">
-              <img onClick={onClickImage} src={contentsImg} />
-              <input
-                ref={inputRef}
-                onChange={onChangeImg}
-                type="file"
-                accept="image/*"
-                style={{ display: "none" }}
-              />
+              <div className="Edit_img img-wrapper">
+                <img onClick={onClickImage} src={contentsImg} />
+              </div>
+              <div className="Edit_img input-wrapper">
+                {isEditMode ? (
+                  ""
+                ) : (
+                  <Button
+                    onClick={onClickImage}
+                    text={"이미지 선택"}
+                    type={"btn-select-img"}
+                  />
+                )}
+
+                <input
+                  ref={inputRef}
+                  onChange={onChangeImg}
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                />
+              </div>
             </div>
             <div className="Edit_text">
               <h3>Contents</h3>
