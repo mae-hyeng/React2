@@ -183,7 +183,7 @@ function App() {
       likeUsers: [],
     };
 
-    const newData = [...data, editNew];
+    const newData = [editNew, ...data];
     setData(newData);
     localStorage.setItem("content", JSON.stringify(newData));
   };

@@ -144,3 +144,38 @@ button:focus {
   background: var(--black-color);
 }
 /* select img button end */
+
+/* prev next button start */
+.prevNext {
+  font-size: 1.5em;
+}
+
+.prevNext:hover {
+  text-decoration: underline;
+}
+/* prev next button end */
+
+/* pagination button start */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  font-size: 1.5em;
+  color: var(--gray-color);
+  background-color: var(--white-color);
+}
+
+.pagination button.active {
+  color: var(--white-color);
+  background-color: var(--black-color);
+  border-radius: 50%;
+}
+
+.pagination button:disabled {
+  color: var(--border-color);
+  text-decoration: none;
+  cursor: default;
+}
+/* pagination button end */
